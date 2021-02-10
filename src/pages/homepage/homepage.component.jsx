@@ -2,7 +2,7 @@ import React from 'react'
 
 import './homepage.style.scss'
 
-import Directional from '../components/directional/directional.component'
+import Directional from '../../components/directional/directional.component'
 
 const HomePage = () =>{
     return(

@@ -2,7 +2,7 @@ import React from 'react'
 
 import './directional.style.scss'
 
-import MenuItem from '../menu-item.component/menu.item.component'
+import MenuItem from '../menu-item/menu-item.component'
 
 class Directional extends React.Component{
 constructor(props){
