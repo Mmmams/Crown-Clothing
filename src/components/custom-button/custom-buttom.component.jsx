@@ -1,10 +1,10 @@
-import Reacr from 'react'
+import React from 'react'
 
 import './custom-buttom.style.scss'
 
-const CustomButton = ({children, ...otherProps}) =>{
+const CustomButton = ({children,isGoogleSingIn,  ...otherProps}) =>{
     return(
-        <button {...otherProps}  className='custom-button'>{children}</button>
+        <button {...otherProps}  className={`${isGoogleSingIn ? 'google-sing-in' : ''} custom-button`}>{children}</button>
     )
 }
 

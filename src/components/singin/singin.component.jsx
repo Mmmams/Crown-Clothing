@@ -5,6 +5,8 @@ import './singin.style.scss'
 import FormInput from '../../components/form-input/form-input.component'
 import CustomButton from '../../components/custom-button/custom-buttom.component'
 
+import {singInWithGoogle} from '../../firebase/firebase.utils'
+
 class SingIn extends React.Component{
     constructor(){
         super();
@@ -35,7 +37,12 @@ class SingIn extends React.Component{
                 <form onSubmit={this.handlerSubmit}>
                     <FormInput type='email' name='email' required handleChange={this.handleChange} value={this.state.email} label='email'/>
                     <FormInput type='password' name='password' required handleChange={this.handleChange} value={this.state.password} label='password'/>
-                    <CustomButton type='submit'>Submin Form</CustomButton>
+                    
+                    <div className='buttons'>
+                        <CustomButton type='submit'>Sing in</CustomButton>
+                        <CustomButton onClick={singInWithGoogle} isGoogleSingIn>Sing in with Google</CustomButton>
+                    </div>
+
                 </form>
 
             </div>
