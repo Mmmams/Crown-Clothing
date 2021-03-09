@@ -8,7 +8,7 @@ import SingInAndSingUp from './pages/sing-in-and-sing-up/sing-in-and-sing-up.com
 
 import './App.css';
 
-import {auth} from './firebase/firebase.utils'
+import {auth, createUserProfileDocument} from './firebase/firebase.utils'
 
 
 
@@ -23,9 +23,8 @@ class App extends React.Component {
 
 
   componentDidMount(){
-   this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({currentUser : user});
-      console.log(user)
+   this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+      createUserProfileDocument(user);
     });
   }
 
