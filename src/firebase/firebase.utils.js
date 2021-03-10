@@ -20,10 +20,10 @@ const config = {
     if(!userSnapshot.exists){
       const {displayName, email} = userAuth;
       const cratedAt = new Date();
-    
+
       try{
         await userRef.set({
-          displayName, 
+          displayName,
           email,
           cratedAt,
           ...additionalData
@@ -45,6 +45,6 @@ const config = {
 
   provider.setCustomParameters({prompt : 'select_account'});
 
-  export const singInWithGoogle = () => auth.signInWithPopup(provider);
+  export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
   export default firebase;
