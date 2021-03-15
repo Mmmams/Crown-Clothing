@@ -5,9 +5,13 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
   if (exisitingCartItem) {
     return cartItems.map((cartItem) =>
       cartItem.id === cartItemToAdd.id
-        ? { ...cartItem, quontity: cartItem.quontity + 1 }
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
   }
-  return [...cartItems, { ...cartItemToAdd, quontity: 1 }];
+  return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 };
+
+// Тут мы берем наш массив товаров который добавлен в корзину, берем из стейта, find проверяем есть ли совпадение товара по айдишник,
+//если есть то вернут true и пройдемся еще раз по этому массиву методом map, если в методое map найдем соответсвие по айдишник уже сущетсвующего товара(так как find вернул true)
+//то увеличит его quantity что покажет что товар добавлен два раза, если find вернет false, то просто возвращаем новый массив в котором есть все ранее добавленные товары + наш новый
