@@ -6,6 +6,7 @@ import { selectCurrentUser } from "./redux/user/user.selectors";
 import HomePage from "./pages/homepage/homepage.component.jsx";
 import ShopPage from "./pages/shop/shop.component.jsx";
 import Header from "./components/header/header.component.jsx";
+import CheckoutPage from "./pages/checkout/checkout.component";
 import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
@@ -51,6 +52,7 @@ class App extends React.Component {
               this.props.currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
             }
           />
+          <Route exact path="/checkout" component={CheckoutPage} />
           <HomePage />
         </Switch>
       </div>
