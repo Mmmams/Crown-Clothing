@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 
 const COLLECTION_MAP_ID = {
   hats: 1,
-  sneackers: 2,
+  sneakers: 2,
   jackets: 3,
   womens: 4,
   mens: 5,
