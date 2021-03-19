@@ -36,6 +36,34 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const addCollectionAndDocuments = async (collectionKey, objToAdd) => {
+  // функция для автоматического внесения информации о товарах в firebase(используется один раз, так как нам не надо добовлять ееё при кажом рендере)
+  console.log(objToAdd);
+  const collectionRef = firestore.collection(collectionKey);
+  const batch = firestore.batch();
+
+  objToAdd.forEach((elem) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, elem);
+  });
+
+  return await batch.commit(); // return promise, when  .commit will succeeds it is return a null value
+};
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.map((doc) => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items,
+    };
+  });
+  console.log(transformedCollection);
+};
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();

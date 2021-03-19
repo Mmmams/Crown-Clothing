@@ -10,6 +10,8 @@ import CheckoutPage from "./pages/checkout/checkout.component";
 import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
+// import { selectCollectionsForPreview } from "./redux/shop/shop.selectors"; нужно было для добовления инфы о товорах в firebase
+// import {addCollectionAndDocuments} from ... нужно было для добовления инфы о товорах в firebase
 import "./App.css";
 
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
@@ -32,6 +34,10 @@ class App extends React.Component {
       }
 
       setCurrentUser(userAuth);
+      // addCollectionAndDocuments(
+      //   "collection",
+      //   collectionArray.map(({ title, items }) => ({ title, items }))
+      // ); // вызываем функция из нашего firebase файла передаем массив который мапим и возвращаем только нужные занчения( деструктуризируя)
     });
   }
 
