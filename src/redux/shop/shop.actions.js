@@ -9,18 +9,7 @@ export const fetchCollectionStart = () => ({
 });
 
 export const fetchCollectionStartAsync = () => {
-  return (dispatch) => {
-    const collectionRef = firestore.collection("collection");
-    dispatch(fetchCollectionStart());
-
-    collectionRef
-      .get()
-      .then((snapshot) => {
-        const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-        dispatch(fetchCollectionSuccess(collectionsMap));
-      })
-      .catch((error) => dispatch(fecthCollectionFailure(error.message)));
-  };
+  return (dispatch) => {};
 };
 
 export const fetchCollectionSuccess = (collectionsMap) => ({

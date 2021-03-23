@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import CollectionOverview from "../../components/collection-overview/collection-overview.component";
 import CollectionPage from "../../pages/collection/collection.component";
 import { connect } from "react-redux";
-import { fetchCollectionStartAsync } from "../../redux/shop/shop.actions";
+import { fetchCollectionStart } from "../../redux/shop/shop.actions";
 import { createStructuredSelector } from "reselect";
 import {
   selectIsCollectionFetching,
@@ -18,8 +18,8 @@ class ShopPage extends React.Component {
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
-    const { fetchCollectionStartAsync } = this.props;
-    fetchCollectionStartAsync();
+    const { fetchCollectionStart } = this.props;
+    fetchCollectionStart();
   }
 
   render() {
@@ -51,7 +51,7 @@ class ShopPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionStartAsync: () => dispatch(fetchCollectionStartAsync()),
+  fetchCollectionStart: () => dispatch(fetchCollectionStart()),
 });
 const mapStateToProps = createStructuredSelector({
   isCollectionFetching: selectIsCollectionFetching,
