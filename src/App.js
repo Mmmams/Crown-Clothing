@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selectors";
@@ -14,44 +14,38 @@ import { connect } from "react-redux";
 import "./App.css";
 import { checkUserSession } from "./redux/user/user.actions";
 
-class App extends React.Component {
-  unsubscribeFromAuth = null;
-
-  componentDidMount() {
-    const { checkUserSession } = this.props;
+const App = ({ checkUserSession, currentUser }) => {
+  useEffect(() => {
     checkUserSession();
-    //---------------------------------------------------------------------------------------------------------------------------------------
-    // addCollectionAndDocuments(
-    //   "collection",
-    //   collectionArray.map(({ title, items }) => ({ title, items }))
-    // ); // вызываем функция из нашего firebase файла передаем массив который мапим и возвращаем только нужные занчения( деструктуризируя)
-    // });
-  }
+  }, [checkUserSession]);
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
-  render() {
-    return (
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route
-            exact
-            path="/signin"
-            render={() =>
-              this.props.currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
-            }
-          />
-          <Route exact path="/checkout" component={CheckoutPage} />
-          <HomePage />
-        </Switch>
-      </div>
-    );
-  }
-}
+  //---------------------------------------------------------------------------------------------------------------------------------------
+  // addCollectionAndDocuments(
+  //   "collection",
+  //   collectionArray.map(({ title, items }) => ({ title, items }))
+  // ); // вызываем функция из нашего firebase файла передаем массив который мапим и возвращаем только нужные занчения( деструктуризируя)
+  // });
+
+  return (
+    <div>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route
+          exact
+          path="/signin"
+          render={() =>
+            currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
+          }
+        />
+        <Route exact path="/checkout" component={CheckoutPage} />
+        <HomePage />
+      </Switch>
+    </div>
+  );
+};
+
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });

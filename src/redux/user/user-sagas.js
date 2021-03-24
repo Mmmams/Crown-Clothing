@@ -102,7 +102,6 @@ export function* onSignUpSuccess() {
 }
 
 export function* onSignUpStart() {
-  console.log("h");
   yield takeLatest(userActionTypes.SIGN_UP_START, signUp);
 }
 

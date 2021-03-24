@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import CollectionOverview from "../../components/collection-overview/collection-overview.component";
 import CollectionPage from "../../pages/collection/collection.component";
@@ -14,41 +14,35 @@ import WithSpinner from "../../components/with-spinner/with-spinner.component";
 const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
-class ShopPage extends React.Component {
-  unsubscribeFromSnapshot = null;
-
-  componentDidMount() {
-    const { fetchCollectionStart } = this.props;
+const ShopPage = ({ fetchCollectionStart, match, isCollectionLoaded }) => {
+  useEffect(() => {
     fetchCollectionStart();
-  }
+  }, [fetchCollectionStart]);
 
-  render() {
-    const { match, isCollectionLoaded } = this.props;
-    return (
-      <div className="shop-page">
-        <Route
-          exact
-          path={`${match.path}`}
-          render={(props) => (
-            <CollectionOverviewWithSpinner
-              isLoading={!isCollectionLoaded}
-              {...props}
-            />
-          )}
-        />
-        <Route
-          path={`${match.path}/:collectionId`}
-          render={(props) => (
-            <CollectionPageWithSpinner
-              isLoading={!isCollectionLoaded}
-              {...props}
-            />
-          )}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="shop-page">
+      <Route
+        exact
+        path={`${match.path}`}
+        render={(props) => (
+          <CollectionOverviewWithSpinner
+            isLoading={!isCollectionLoaded}
+            {...props}
+          />
+        )}
+      />
+      <Route
+        path={`${match.path}/:collectionId`}
+        render={(props) => (
+          <CollectionPageWithSpinner
+            isLoading={!isCollectionLoaded}
+            {...props}
+          />
+        )}
+      />
+    </div>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCollectionStart: () => dispatch(fetchCollectionStart()),
