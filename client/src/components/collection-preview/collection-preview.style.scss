@@ -11,10 +11,20 @@
     &:hover {
       opacity: 0.8;
     }
+    @media screen and (max-width: 800px) {
+      &:hover {
+        opacity: unset;
+      }
+    }
   }
 
   .preview {
     display: flex;
     justify-content: space-between;
+    @media screen and (max-width: 800px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 10px;
+    }
   }
 }

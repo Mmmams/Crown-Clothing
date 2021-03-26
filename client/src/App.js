@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selectors";
-
+import "./App.scss";
 import HomePage from "./pages/homepage/homepage.component.jsx";
 import ShopPage from "./pages/shop/shop.component.jsx";
 import Header from "./components/header/header.component.jsx";
@@ -11,7 +11,7 @@ import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.com
 import { connect } from "react-redux";
 // import { selectCollectionsForPreview } from "./redux/shop/shop.selectors"; нужно было для добовления инфы о товорах в firebase
 // import {addCollectionAndDocuments} from ... нужно было для добовления инфы о товорах в firebase
-import "./App.css";
+
 import { checkUserSession } from "./redux/user/user.actions";
 
 const App = ({ checkUserSession, currentUser }) => {
